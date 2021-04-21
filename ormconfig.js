@@ -1,3 +1,8 @@
+function isProduction () {
+  const mode = process.env.NODE_ENV
+  return mode !== 'dev'
+}
+
 module.exports = {
   type: process.env.DB_DIALECT,
   database: process.env.DB_NAME,
@@ -7,18 +12,10 @@ module.exports = {
   password: process.env.DB_PASSWORD,
   synchronize: true,
   logging: false,
-  entities: [
-    'src/entities/**/*.ts'
-  ],
-  migrations: [
-    'src/database/migration/**/*.ts'
-  ],
-  subscribers: [
-    'src/database/subscriber/**/*.ts'
-  ],
+  entities: [isProduction() ? 'dist/entities/*.js' : 'src/entities/*.ts'],
+  migrations: [isProduction() ? 'dist/database/migrations/*.js' : 'src/database/migrations/*.ts'],
   cli: {
     entitiesDir: 'src/entities',
-    migrationsDir: 'src/database/migration',
-    subscribersDir: 'src/database/subscriber'
+    migrationsDir: 'src/database/migrations'
   }
 }
