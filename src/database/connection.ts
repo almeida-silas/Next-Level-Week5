@@ -4,6 +4,8 @@ export async function connect (): Promise<boolean> {
   try {
     await createConnection()
 
+    console.log('Database connected!')
+
     return true
   } catch (error) {
     return false
