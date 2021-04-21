@@ -4,6 +4,7 @@ const { compilerOptions } = require('./tsconfig.json')
 module.exports = {
   bail: true,
   clearMocks: true,
+  collectCoverage: true,
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' }),
   testEnvironment: 'node',
   testMatch: ['**/__tests__/**/*.test.ts?(x)'],
