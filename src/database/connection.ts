@@ -1,6 +1,15 @@
 import { createConnection } from 'typeorm'
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-createConnection().then(() => {
-  console.log('Database connected!')
-})
+export async function connect (): Promise<boolean> {
+  try {
+    await createConnection()
+
+    return true
+  } catch (error) {
+    return false
+  }
+}
+
+if (process.env.NODE_ENV !== 'test') {
+  connect()
+}
