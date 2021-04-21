@@ -15,7 +15,7 @@ class SettingsController {
     })
     await settingsRepository.save(settings)
 
-    return response.json(settings)
+    return response.status(201).json(settings)
   }
 }
 
