@@ -1,6 +1,7 @@
 import { Router } from 'express'
-import { settingsValidator } from '../validators/settingsValidators'
 import SettingsController from '../controllers/SettingsController'
+
+import { settingsValidator } from '../middlewares/validators/settingsValidator'
 
 const router = Router()
 
