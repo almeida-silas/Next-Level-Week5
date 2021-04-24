@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import AppError from '../../errors/AppError'
 
-import { SettingsSchema } from '../../schema/SettingsSchema'
+import { SettingsSchema } from '../../schemes/SettingsSchema'
 
 export const settingsValidator = (request: Request, response: Response, next: NextFunction): void => {
   const { error, value } = SettingsSchema.validate(request.body, { abortEarly: false, errors: { stack: false } })
