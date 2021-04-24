@@ -12,8 +12,6 @@ export const settingsValidator = (request: Request, response: Response, next: Ne
       path: error.path
     }))
 
-    console.log(error.details)
-
     throw new AppError('Request validation failed', 422, errors)
   }
 
