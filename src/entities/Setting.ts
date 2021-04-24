@@ -1,7 +1,8 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm'
+import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, Unique } from 'typeorm'
 import { v4 as uuid } from 'uuid'
 
-@Entity('settings')
+@Entity('settings', { synchronize: true })
+@Unique('UQ_NAMES', ['username'])
 export class Setting {
   @PrimaryColumn()
   id?: string
