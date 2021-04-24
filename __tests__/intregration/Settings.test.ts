@@ -24,7 +24,7 @@ describe('Settings', () => {
     return await connection.close()
   })
 
-  it('should be success when create a new settings', async () => {
+  it('should be success to create a new settings', async () => {
     const setting = {
       username: faker.internet.userName(),
       chat: true
@@ -35,12 +35,22 @@ describe('Settings', () => {
     expect(response.body).toHaveProperty('id')
   })
 
-  it('should be fail when create a new settings', async () => {
-    const setting = {
+  it('should be fail to create a new settings without username', async () => {
+    const response = await request(app).post('/api/settings').send({
       chat: true
-    }
-    const response = await request(app).post('/api/settings').send(setting)
+    })
 
     expect(response.status).toBe(422)
+  })
+
+  it('should be fail to create two new settings with the same username', async () => {
+    const setting = {
+      username: faker.internet.userName()
+    }
+
+    await request(app).post('/api/settings').send(setting)
+    const response = await request(app).post('/api/settings').send(setting)
+
+    expect(response.status).toBe(400)
   })
 })
