@@ -9,5 +9,8 @@ const routes = Router()
 routes.use('/api', settings)
 routes.use('/api', users)
 routes.use('/api', messages)
+routes.use('/pages/client', (request, response) => {
+  return response.render('html/client.html')
+})
 
 export { routes }
